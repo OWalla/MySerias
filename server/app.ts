@@ -20,8 +20,11 @@ class Server {
         this.app.set("view engine", "jade");
         this.app.use(json());
         this.app.use(urlencoded({ extended: true }));
-        this.app.use(express.static(join(__dirname, "public")));
-        this.app.use("/client", express.static(join(__dirname, "client")));
+        this.app.use(express.static(join(__dirname, "../public")));
+        this.app.use("/client", express.static(join(__dirname, "../client")))
+
+        this.app.use(express.static(join(__dirname, "../node_modules")));
+        this.app.use(express.static(join(__dirname, "../tools")));
         this.app.use((err, req, res, next) => {
             var error = new Error("Not Found");
             err.status = 404;
