@@ -3,3 +3,4 @@ client/**/*.js
 server/**/*.js
 client/**/*.js.map
 server/**/*.js.map
+data
