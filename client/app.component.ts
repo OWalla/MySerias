@@ -2,18 +2,15 @@ import { Component } from "@angular/core";
 import { OnInit } from "@angular/core";
 
 import { ShowService } from "./shows/show.service";
-import { Show } from "./shows/show";
 
 @Component({
     selector: "my-app",
-    template: `<li *ngFor="let show of shows">
-    {{show.id}} - {{show.name}}
-  </li>`,
+    template: `<show-detail *ngFor="let showId of shows" [id]="showId"></show-detail>`,
     providers: [ShowService]
 })
 export class AppComponent implements OnInit {
     title = "Oded site!";
-    shows: Show[];
+    shows: number[];
 
     ngOnInit(): void {
         this.getShows();
@@ -22,6 +19,8 @@ export class AppComponent implements OnInit {
     constructor(private showService: ShowService) { }
 
     getShows(): void {
-        this.showService.getShows().then(shows => this.shows = shows);
+        this.showService.getUserShows().then((show) => {
+            this.shows = show;
+        });
     }
 }

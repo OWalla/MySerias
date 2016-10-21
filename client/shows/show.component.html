@@ -1,0 +1,20 @@
+<div *ngIf='show'>
+    <h1>{{show.name}}</h1>
+    <p>
+        <strong>Genres: </strong>
+    </p>
+        <ul>
+            <li *ngFor="let genre of show.genres">
+                {{genre}}
+            </li>
+        </ul>
+    <p>
+        <strong>Premiered: </strong>
+        {{show.premiered}}</p>
+    <p>
+        <strong>Rating: </strong>
+        {{show.rating}}</p>
+    <p>
+        <strong>Summary: </strong>
+        <p [innerHtml]="show.summary"></p>
+</div>

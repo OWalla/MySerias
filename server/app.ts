@@ -2,6 +2,7 @@ import * as express from "express";
 import { join } from "path";
 import * as favicon from "serve-favicon";
 import { json, urlencoded } from "body-parser";
+import * as showRoute from "./routes/shows";
 
 class Server {
     app: any;
@@ -21,7 +22,7 @@ class Server {
         this.app.use(json());
         this.app.use(urlencoded({ extended: true }));
         this.app.use(express.static(join(__dirname, "../public")));
-        this.app.use("/client", express.static(join(__dirname, "../client")))
+        this.app.use("/client", express.static(join(__dirname, "../client")));
 
         this.app.use(express.static(join(__dirname, "../node_modules")));
         this.app.use(express.static(join(__dirname, "../tools")));
@@ -33,11 +34,11 @@ class Server {
     }
 
     routes() {
-        // let router;
-        // router = express.Router();
-        // var index = new indexRoute.Index();
-        // router.get("/", index.index.bind(index.index));
-        // this.app.use(router);
+        let router;
+        router = express.Router();
+        var show = new showRoute.Show();
+        router.get("/getShows", show.getShows.bind(show.getShows));
+        this.app.use(router);
     }
 }
 
