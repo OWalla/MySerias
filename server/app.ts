@@ -3,12 +3,14 @@ import { join } from "path";
 import * as favicon from "serve-favicon";
 import { json, urlencoded } from "body-parser";
 import * as showRoute from "./routes/shows";
+import * as mongoose  from "mongoose";
 
 class Server {
     app: any;
     constructor() {
         this.app = express();
         this.config();
+        this.initializeDatabase();
         this.routes();
     }
 
@@ -31,6 +33,11 @@ class Server {
             err.status = 404;
             next(err);
         });
+    }
+
+    initializeDatabase() {
+        var connectionString = "mongodb://127.0.0.1:27017/MySerias";
+        mongoose.connect(connectionString);
     }
 
     routes() {
