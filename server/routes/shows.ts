@@ -9,9 +9,7 @@ module Route {
 
         public getShows(req: Request, res: Response, next: NextFunction) {
             ShowModel.find({}).select("-_id tvMazeId").then((shows) => {
-                console.log(shows);
                 var showIds = shows.map((show) => show.tvMazeId);
-                console.log(showIds);
                 res.json(showIds);
             });
         }
@@ -21,13 +19,11 @@ module Route {
             show.tvMazeId = parseInt(req.body.tvMazeId);
             show.save((err) => {
                 if (err) {
-                    console.log("BAD!");
                     console.log(err);
                     res.send(err);
                 }
             })
                 .then((result) => {
-                    console.log("Good!");
                     res.json(result);
                 });
         }
