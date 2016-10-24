@@ -45,6 +45,7 @@ class Server {
         router = express.Router();
         var show = new showRoute.Show();
         router.get("/getShows", show.getShows.bind(show.getShows));
+        router.post("/addShow", show.addShow.bind(show.addShow));
         this.app.use(router);
     }
 }
