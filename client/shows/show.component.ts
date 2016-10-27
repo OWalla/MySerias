@@ -10,8 +10,15 @@ import { ShowService } from "./show.service";
     templateUrl: "client/shows/show.component.html",
 })
 export class ShowComponent implements OnInit {
+    _id: number;
     @Input()
-    id: number;
+    set id(id: number) {
+        this._id = id;
+        this.initializeShowData(this.id);
+    }
+
+    get id() { return this._id; }
+
     show: Show;
 
     constructor(private showService: ShowService) { }
