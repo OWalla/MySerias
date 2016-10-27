@@ -3,6 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { AppComponent }   from "./app.component";
 import { HttpModule} from "@angular/http";
 import { FormsModule }   from "@angular/forms";
+import { FadingCircleComponent } from "ng2-spin-kit/app/spinner/fading-circle.js";
 
 import { RouterModule }   from "@angular/router";
 
@@ -16,7 +17,8 @@ import { routing } from "./app.routes";
 
 @NgModule({
     imports: [BrowserModule, HttpModule, FormsModule, routing],
-    declarations: [AppComponent, ShowComponent, TopNavigationComponent, UserShowsComponent, PageNotFoundComponent, AddShowComponent],
+    declarations: [AppComponent, ShowComponent, TopNavigationComponent,
+        UserShowsComponent, PageNotFoundComponent, AddShowComponent, FadingCircleComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

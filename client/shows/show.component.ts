@@ -11,8 +11,10 @@ import { ShowService } from "./show.service";
 })
 export class ShowComponent implements OnInit {
     _id: number;
+
     @Input()
     set id(id: number) {
+        this.show = null;
         this._id = id;
         this.initializeShowData(this.id);
     }
