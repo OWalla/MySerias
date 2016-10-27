@@ -8,7 +8,7 @@ import "rxjs/add/operator/toPromise";
 export class ShowService {
 
     private showByIdUrl: string = "http://api.tvmaze.com/shows/";
-    private findShowsByNameUrl: string = "http://api.tvmaze.com/search/shows?q=";
+    private findShowByNameUrl: string = "http://api.tvmaze.com/singlesearch/shows?q=";
     private indexUrl: string = "http://api.tvmaze.com/shows?page=";
 
     private userShowsUrl: string = "/getShows";
@@ -25,6 +25,13 @@ export class ShowService {
 
     getShow(id: number): Promise<Show> {
         return this.http.get(this.showByIdUrl + id)
+            .toPromise()
+            .then(this.mapShowResult)
+            .catch(this.handleError);
+    }
+
+    getShowByName(name: string): Promise<Show> {
+        return this.http.get(this.findShowByNameUrl + name)
             .toPromise()
             .then(this.mapShowResult)
             .catch(this.handleError);

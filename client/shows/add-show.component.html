@@ -1,11 +1,15 @@
 <form (ngSubmit)="onSubmit()">
     <div class="form-group row">
-        <label for="show-name-input" class="col-xs-2 col-form-label">Text</label>
+        <label for="show-name-input" class="col-xs-2 col-form-label">Name</label>
+        <div class="col-xs-10">
+            <input class="form-control" type="text" id="show-name-input" [(ngModel)]="showName" name="showName" placeholder="Enter show name..." (keyup.enter)="this.onNameChange()" (blur)="this.onNameChange()">
+        </div>
+    </div><div class="form-group row">
+        <label for="show-name-input" class="col-xs-2 col-form-label">TV Maze Id</label>
         <div class="col-xs-10">
             <input class="form-control" type="text" id="show-name-input" [(ngModel)]="tvMazeId" name="tvMazeId" placeholder="Enter show name...">
         </div>
     </div>
     <button type="button" class="btn btn-primary" (click)="addShow()">Submit</button>
 </form>
-
 <show-detail *ngIf="tvMazeId" [id]="tvMazeId"></show-detail>
