@@ -11,6 +11,7 @@ import { ShowService } from "./show.service";
 })
 export class ShowComponent implements OnInit {
     _id: number;
+    fetched: boolean;
 
     @Input()
     set id(id: number) {
@@ -30,8 +31,12 @@ export class ShowComponent implements OnInit {
     }
 
     initializeShowData(id: number): void {
-        this.showService.getShow(id).then((show) => {
+        this.showService.getShow(id).catch((err) => {
+            this.fetched = true;
+            console.log(err);
+        }).then((show) => {
             this.show = show;
+            this.fetched = true;
         });
     }
 }
