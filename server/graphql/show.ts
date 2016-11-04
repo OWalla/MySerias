@@ -6,6 +6,10 @@ import {
     GraphQLID
 } from 'graphql';
 
+import * as rp from 'request-promise';
+
+import episodeType from './episode';
+
 export default new GraphQLObjectType({
     name: 'Show',
     fields: {
@@ -48,5 +52,13 @@ export default new GraphQLObjectType({
         updated: {
             type: GraphQLInt
         },
+        episodes: {
+            type: new GraphQLList(episodeType),
+            resolve: (root) => {
+                console.log(`http://api.tvmaze.com/shows/${root.id}/episodes`);
+                return rp(`http://api.tvmaze.com/shows/${root.id}/episodes`)
+                    .then((res) => JSON.parse(res));
+            }
+        }
     }
 });
