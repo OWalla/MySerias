@@ -1,0 +1,10 @@
+<div *ngIf='show && episode'>
+    <h3>{{show.name}}
+        -
+        {{ episode.name }} (S{{episode.season}}EP{{episode.number}})</h3>
+    <p>
+        <strong>Air in:</strong>
+        {{ episode.airdate | date : 'fullDate'}}
+    </p>
+    <p [innerHtml]='episode.summary'></p>
+</div>
