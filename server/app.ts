@@ -44,7 +44,6 @@ class Server {
     }
 
     grahhql() {
-        console.log(schema);
         this.app.use("/graphql", graphqlHTTP({
             schema: schema,
             graphiql: true
