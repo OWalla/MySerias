@@ -3,7 +3,9 @@ import { join } from "path";
 import * as favicon from "serve-favicon";
 import { json, urlencoded } from "body-parser";
 import * as showRoute from "./routes/shows";
-import * as mongoose  from "mongoose";
+import * as mongoose from "mongoose";
+import * as graphqlHTTP from "express-graphql";
+import { schema } from "./graphql/schema";
 
 class Server {
     app: any;
@@ -12,6 +14,7 @@ class Server {
         this.config();
         this.initializeDatabase();
         this.routes();
+        this.grahhql();
     }
 
     static bootstrap() {
@@ -38,6 +41,14 @@ class Server {
     initializeDatabase() {
         var connectionString = "mongodb://127.0.0.1:27017/MySerias";
         mongoose.connect(connectionString);
+    }
+
+    grahhql() {
+        console.log(schema);
+        this.app.use("/graphql", graphqlHTTP({
+            schema: schema,
+            graphiql: true
+        }));
     }
 
     routes() {
